@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>入门指南 - 知识库</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <header>
+        <!-- Include header template -->
+        <!-- This will include the logo, navigation, and search functionality -->
+        <div id="header-placeholder"></div>
+    </header>
+
+    <main class="content-area">
+        <h1>入门指南</h1>
+        
+        <section id="welcome">
+            <h2>欢迎使用我们的产品</h2>
+            <p>这里是产品入门指南，包含基本使用方法和功能介绍。</p>
+            <h3>主要特性</h3>
+            <ul>
+                <li>快速部署</li>
+                <li>易于集成</li>
+                <li>完善文档</li>
+            </ul>
+        </section>
+
+        <section id="installation">
+            <h2>安装指南</h2>
+            <p>详细安装步骤说明：</p>
+            <pre><code>npm install package-name</code></pre>
+            <p>或通过CDN引入：</p>
+            <pre><code>&lt;script src="https://cdn.example.com/package.js"&gt;&lt;/script&gt;</code></pre>
+        </section>
+
+        <section id="configuration">
+            <h2>配置说明</h2>
+            <p>基础配置选项：</p>
+            <pre><code>{
+  "apiKey": "your-key",
+  "environment": "production"
+}</code></pre>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Include footer template -->
+        <!-- This will include copyright information and social media links -->
+        <div id="footer-placeholder"></div>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+    <script>
+        // Load header and footer templates
+        document.getElementById('header-placeholder').innerHTML = `
+            <!-- Header content will be dynamically loaded here -->
+        `;
+        document.getElementById('footer-placeholder').innerHTML = `
+            <!-- Footer content will be dynamically loaded here -->
+        `;
+    </script>
+</body>
+</html>

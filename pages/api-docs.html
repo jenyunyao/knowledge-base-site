@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API 文档 - 知识库</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Include header template -->
+        <?php include('../templates/header.html'); ?>
+    </header>
+
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Include sidebar template -->
+            <?php include('../templates/sidebar.html'); ?>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content-area">
+            <h1>API 文档</h1>
+            <section>
+                <h2>端点列表</h2>
+                <div class="api-endpoints">
+                    <h3>可用端点</h3>
+                    <ul>
+                        <li><strong>GET /api/v1/users</strong> - 获取用户列表</li>
+                        <li><strong>GET /api/v1/products</strong> - 获取产品列表</li>
+                        <li><strong>POST /api/v1/users</strong> - 创建新用户</li>
+                        <li><strong>PUT /api/v1/users/{id}</strong> - 更新用户信息</li>
+                        <li><strong>DELETE /api/v1/users/{id}</strong> - 删除用户</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>认证</h2>
+                <p>要访问 API，您需要提供有效的 API 密钥。请在请求头中包含以下信息：</p>
+                <pre><code>Authorization: Bearer YOUR_API_KEY</code></pre>
+                <p>有关如何获取 API 密钥的详细信息，请参阅 <a href="authentication.html">认证文档</a>。</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Include footer template -->
+        <?php include('../templates/footer.html'); ?>
+    </footer>
+
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>

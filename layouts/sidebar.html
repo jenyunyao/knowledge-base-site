@@ -1,0 +1,223 @@
+<div class="sidebar" id="floating-sidebar">
+    <div class="sidebar-header">
+        <h2>知识库导航</h2>
+        <button id="toggle-sidebar" class="toggle-btn" aria-label="折叠侧边栏">
+            <span class="toggle-icon">≡</span>
+        </button>
+    </div>
+    
+    <div class="sidebar-content">
+        <div class="category-section">
+            <h3>最新分类</h3>
+            <ul class="category-list">
+                <li class="category-item">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <span class="category-name">入门指南</span>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <ul class="category-content">
+                        <li><a href="content/getting-started/welcome.md">欢迎使用</a></li>
+                        <li><a href="content/getting-started/installation.md">安装教程</a></li>
+                        <li><a href="content/getting-started/configuration.md">基础配置</a></li>
+                    </ul>
+                </li>
+                <li class="category-item">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <span class="category-name">API 文档</span>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <ul class="category-content">
+                        <li><a href="content/api-docs/endpoints.md">API 端点</a></li>
+                        <li><a href="content/api-docs/authentication.md">认证方法</a></li>
+                        <li><a href="content/api-docs/examples.md">使用示例</a></li>
+                    </ul>
+                </li>
+                <li class="category-item">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <span class="category-name">常见问题</span>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <ul class="category-content">
+                        <li><a href="content/faq/account.md">账户相关问题</a></li>
+                        <li><a href="content/faq/technical.md">技术问题</a></li>
+                        <li><a href="content/faq/billing.md">计费问题</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="tags-section">
+            <h3>热门标签</h3>
+            <div class="tags">
+                <a href="#" class="tag">安装</a>
+                <a href="#" class="tag">配置</a>
+                <a href="#" class="tag">认证</a>
+                <a href="#" class="tag">API</a>
+                <a href="#" class="tag">入门</a>
+                <a href="#" class="tag">FAQ</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.sidebar {
+    position: fixed;
+    top: 60px; /* 头部高度，根据实际情况调整 */
+    left: 0;
+    width: 280px;
+    height: calc(100vh - 60px);
+    background-color: #f8f9fa;
+    border-right: 1px solid #e9ecef;
+    overflow-y: auto;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    padding: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.sidebar-content {
+    padding: 15px;
+}
+
+.category-section, .tags-section {
+    margin-bottom: 20px;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-item {
+    margin-bottom: 5px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #e9ecef;
+    cursor: pointer;
+}
+
+.category-header:hover {
+    background-color: #dee2e6;
+}
+
+.category-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.category-content li {
+    padding: 8px 15px 8px 20px;
+    background-color: #f1f3f5;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.category-content li:last-child {
+    border-bottom: none;
+}
+
+.category-item.active .category-content {
+    max-height: 500px;
+}
+
+.category-item.active .expand-icon {
+    transform: rotate(45deg);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    padding: 4px 10px;
+    background-color: #e9ecef;
+    border-radius: 15px;
+    font-size: 12px;
+    color: #495057;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.tag:hover {
+    background-color: #dee2e6;
+}
+
+/* 折叠状态 */
+.sidebar.collapsed {
+    transform: translateX(-240px);
+}
+
+.sidebar.collapsed .toggle-icon {
+    transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 240px;
+        transform: translateX(-240px);
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+}
+</style>
+
+<script>
+// 侧边栏折叠控制
+document.getElementById('toggle-sidebar').addEventListener('click', function() {
+    document.getElementById('floating-sidebar').classList.toggle('collapsed');
+});
+
+// 分类展开/折叠
+function toggleCategory(element) {
+    const categoryItem = element.parentElement;
+    categoryItem.classList.toggle('active');
+    
+    const expandIcon = element.querySelector('.expand-icon');
+    expandIcon.textContent = categoryItem.classList.contains('active') ? '−' : '+';
+}
+
+// 页面加载完成后展开第一个分类
+document.addEventListener('DOMContentLoaded', function() {
+    const firstCategory = document.querySelector('.category-item');
+    if (firstCategory) {
+        firstCategory.classList.add('active');
+        firstCategory.querySelector('.expand-icon').textContent = '−';
+    }
+});
+</script>
