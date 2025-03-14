@@ -1,0 +1,86 @@
+github连接超时、提交（push）代码失败解决方案
+
+且随风而行
+
+已于 2023-04-07 16:50:15 修改
+
+阅读量3.1k
+ 收藏 3
+
+点赞数 2
+文章标签： github git java
+版权
+
+腾讯云开发者社区
+文章已被社区收录
+加入社区
+ 本文指导如何设置Git的用户名和邮箱，生成并添加SSH密钥到GitHub，以及测试和验证SSH连接，以便安全地推送代码。
+摘要由CSDN通过智能技术生成
+1. 设置Git的user name和email（默认已安装Git）
+git config --global user.name "yourname"
+git config --global user.email "youremail"
+1
+2
+2. 生成SSH密钥
+查看是否已经有了ssh密钥：cd ~/.ssh
+如果没有密钥则不会有此文件夹，有则备份删除
+生成密钥：
+ssh-keygen -t rsa -C “458079442@qq.com”
+按3个回车，密码为空。
+Your identification has been saved in /home/tekkub/.ssh/id_rsa.
+Your public key has been saved in /home/tekkub/.ssh/id_rsa.pub.
+The key fingerprint is:
+………………
+最后得到了两个文件：id_rsa和id_rsa.pub
+添加密钥到ssh：ssh-add 文件名,需要之前输入密码.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+3. 登陆github系统
+点击右上角的 Account Settings—>SSH Public keys —> add another public keys
+
+把你本地生成的密钥复制到里面（key文本框中）， 点击 add key 就ok了
+
+注意：在github上添加ssh密钥，这要添加的是“id_rsa.pub”里面的公钥。
+1
+2
+3
+4
+5
+
+
+4. 接着打开git ，测试连接是否成功
+   $ ssh -T git@github.com
+1
+如果提示：Hi defnngj You’ve successfully authenticated, but GitHub does not provide shell access. 说明你连接成功了
+
+打开https://github.com/,在设置中添加密钥
+
+测试：ssh git@github.com
+The authenticity of host ‘github.com (207.97.227.239)’ can’t be established.
+RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added ‘github.com,207.97.227.239′ (RSA) to the list of known hosts.
+ERROR: Hi tekkub! You’ve successfully authenticated, but GitHub does not provide shell access
+Connection to github.com closed.
+1
+2
+3
+4
+5
+6
+7
+测试成功就可以push code了.
+————————————————
+
+                            版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。
+                        
+原文链接：https://blog.csdn.net/weixin_44729970/article/details/130015046
